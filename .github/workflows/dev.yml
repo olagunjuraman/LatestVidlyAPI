@@ -1,0 +1,33 @@
+name: Deploy to Development
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          npm install
+          npm run build
+      - name: Deploy to droplet
+        uses: appleboy/ssh-action@master
+        with:
+          host: 164.92.175.158
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          # env:
+          #   NODE_ENV: 'development'
+          #   DB_PORT: 5432
+          #   DB_HOST: example.com
+          #   DB_NAME: mydb
+          #   DB_USER: myuser
+          #   DB_PASSWORD: '${{ secrets.DB_PASSWORD }}'
+          script: |
+            cd /testing-app
+            git pull origin develop
+            pm2 restart my-app
