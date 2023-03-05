@@ -29,4 +29,4 @@ jobs:
           script: |
             cd ~/LatestVidlyAPI 
             git pull origin develop
-            pm2 restart my-app
+            pm2 restart vidly
