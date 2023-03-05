@@ -27,6 +27,6 @@ jobs:
           #   DB_USER: myuser
           #   DB_PASSWORD: '${{ secrets.DB_PASSWORD }}'
           script: |
-            cd /LatestVidlyAPI 
+            cd ~/LatestVidlyAPI 
             git pull origin develop
             pm2 restart my-app
