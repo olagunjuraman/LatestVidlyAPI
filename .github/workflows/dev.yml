@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - develop
+env:
+  NODE_ENV: development
+  DB_NAME: ${{ secrets.DB_NAME }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,9 +22,6 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          env:
-            NODE_ENV: development
-            DB_NAME: ${{ secrets.DB_NAME }}
 
           script: |
             cd ~/LatestVidlyAPI 
