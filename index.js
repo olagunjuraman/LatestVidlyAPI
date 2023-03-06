@@ -1,23 +1,32 @@
-const express = require('express');
-const error = require('./middleware/error');
-const genres  = require('./routes/genre');
-const user = require('./routes/user');
-const auth = require('./routes/auth');
-const customer = require('./routes/customer');
-const movie = require('./routes/movie')
+const express = require("express");
+const dotenv = require("dotenv");
+
+dotenv.config({});
 
 const app = express();
 
-const PORT = process.env.PORT;
-app.listen(PORT || 5000);
+const PORT = 4000;
 
-app.use(express.json());
-app.use('/api/genres', genres);
-app.use('/api/auth', auth);
-app.use('/api/users', user);
-app.use('/api/customers', customer);
-app.use('/api/movies', movie);
+app.get("/", (req, res) => {
+  console.log(process.env.DB_NAME, "undefined");
+  res.send(
+    `Yeah i am awesome, ${process.env.DB_NAME} fuck you!, are you sure you want to continue, just ignore this`
+  );
+});
 
+app.listen(PORT, () => {
+  console.log("listening on port");
+});
 
+// const http = require("http");
 
-app.use(error);
+// const server = http.createServer(function (req, res) {
+//   if (req.url === "/") {
+//     res.write("Hello world crazy motherfuckeffr");
+//     res.end();
+//   }
+// });
+
+// server.listen("4000");
+
+// console.log("listening on port ");
