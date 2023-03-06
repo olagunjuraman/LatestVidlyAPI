@@ -26,4 +26,5 @@ jobs:
           script: |
             cd ~/LatestVidlyAPI 
             git pull origin develop
+            npm install
             pm2 restart vidly
