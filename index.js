@@ -1,11 +1,14 @@
 const express = require("express");
+const dotenv = require("dotenv");
+
+dotenv.config({});
 
 const app = express();
 
 const PORT = 4000;
 
 app.get("/", (req, res) => {
-  res.send("Yeah i am awesome");
+  res.send(`Yeah i am awesome, ${process.env.DB_NAME} fuck you!`);
 });
 
 app.listen(PORT, () => {
