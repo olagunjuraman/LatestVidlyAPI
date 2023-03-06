@@ -8,7 +8,7 @@ const app = express();
 const PORT = 4000;
 
 app.get("/", (req, res) => {
-  console.log("yeeah");
+  console.log(process.env.DB_NAME, "undefined");
   res.send(
     `Yeah i am awesome, ${process.env.DB_NAME} fuck you!, are you sure you want to continue, just ignore this`
   );
