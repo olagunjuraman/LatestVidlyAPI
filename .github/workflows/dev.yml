@@ -7,8 +7,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      DB_NAME: ${{ secrets.DB_NAME }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,7 +20,8 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          DB_NAME: ${{ env.DB_NAME}}
+          envs: |
+            DB_NAME=${{ secrets.DB_NAME }}
 
           script: |
             cd ~/LatestVidlyAPI 
