@@ -1,0 +1,30 @@
+name: Deploy to Development
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          npm install
+      - name: Deploy to droplet
+        uses: appleboy/ssh-action@master
+        with:
+          host: 164.92.175.158
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          envs: |
+            DB_NAME: ${{ secrets.DB_NAME }}
+
+          script: |
+            cd ~/LatestVidlyAPI 
+            git pull origin main
+            npm install
+            pm2 restart vidly-prod
