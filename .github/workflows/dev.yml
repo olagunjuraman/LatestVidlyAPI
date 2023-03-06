@@ -21,7 +21,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           envs: |
-            DB_NAME=${{ secrets.DB_NAME }}
+            DB_NAME:${{ secrets.DB_NAME }}
 
           script: |
             cd ~/LatestVidlyAPI 
