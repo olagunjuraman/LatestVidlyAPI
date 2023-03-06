@@ -8,7 +8,9 @@ const app = express();
 const PORT = 4000;
 
 app.get("/", (req, res) => {
-  res.send(`Yeah i am awesome, ${process.env.DB_NAME} fuck you!`);
+  res.send(
+    `Yeah i am awesome, ${process.env.DB_NAME} fuck you!, are you sure you want to continue`
+  );
 });
 
 app.listen(PORT, () => {
